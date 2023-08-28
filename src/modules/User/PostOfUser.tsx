@@ -1,3 +1,4 @@
+'use client';
 import { toUpperCase } from '@/utils/constand';
 import { Fragment } from 'react';
 import { useQuery } from '@tanstack/react-query';
@@ -29,6 +30,7 @@ const PostOfUser = ({ id }: { id: string }) => {
               ))}
           </Fragment>
         )}
+        {data?.length === 0 && <p>User not commented !!!</p>}
       </ul>
     </Fragment>
   );
