@@ -1,29 +1,25 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { baseURL, toUpperCase } from '@/utils/constand';
-import { useState, useEffect, Fragment } from 'react';
+import { toUpperCase } from '@/utils/constand';
+import { Fragment } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getPostByUserId } from '@/services/user.services';
 
 const PostOfUser = ({ id }: { id: string }) => {
-  const [posts, setPost] = useState<IPostsApi[]>([]);
-
-  const getPostById = async () => {
-    const res = await fetch(`${baseURL}/posts?userId=${id}`);
-    const data: IPostsApi[] = await res.json();
-    setPost(data);
-  };
-
-  useEffect(() => {
-    getPostById();
-  }, []);
+  const { data, isLoading } = useQuery({
+    queryKey: ['post', id],
+    queryFn: () => getPostByUserId(id),
+    staleTime: 1 * 60 * 1000,
+  });
 
   return (
     <Fragment>
       <ul className='flex flex-col gap-y-2'>
-        {posts.length === 0 ? (
+        {isLoading ? (
           <p>Loading...</p>
         ) : (
           <Fragment>
-            {posts.length > 0 &&
-              posts.map((post) => (
+            {data &&
+              data.length > 0 &&
+              data.map((post) => (
                 <li className='mb-2' key={post.id}>
                   <p className='font-medium text-lg'>
                     {toUpperCase(post.title)}

@@ -1,32 +1,27 @@
-import { baseURL } from '@/utils/constand';
 import Link from 'next/link';
-import { useEffect, useState, Fragment } from 'react';
+import { Fragment } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getAllUsers } from '@/services/user.services';
 
 const ListUsers = () => {
-  const [users, setUser] = useState<IUserApi[]>([]);
-
-  const getAllUsers = async () => {
-    const res = await fetch(`${baseURL}/users`);
-    const data: IUserApi[] = await res.json();
-    setUser(data);
-  };
-  useEffect(() => {
-    getAllUsers();
-  }, []);
+  const { data, isLoading } = useQuery({
+    queryKey: ['users'],
+    queryFn: getAllUsers,
+  });
 
   return (
     <Fragment>
       <h1 className='my-6 font-medium text-lg'>
-        ListUsers have {users?.length} users
+        ListUsers have {data?.length} users
       </h1>
       <ul className='flex flex-col gap-y-2'>
-        {users.length === 0 ? (
+        {isLoading ? (
           <p>Loading...</p>
         ) : (
           <Fragment>
-            {users &&
-              users.length > 0 &&
-              users.map((user) => (
+            {data &&
+              data.length > 0 &&
+              data.map((user) => (
                 <li key={user.id}>
                   <Link href={`/user/${user.id}`}>{user.email}</Link>
                 </li>

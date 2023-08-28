@@ -33,3 +33,8 @@ interface IPostsApi {
   body: string;
   id: number;
 }
+
+type ButtonProps = {
+  optionclass?: string;
+  size?: 'md' | 'lg';
+} & JSX.IntrinsicElements['button'];

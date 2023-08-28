@@ -19,7 +19,7 @@ const ProviderApp = ({ children }: { children: React.ReactNode }) => {
           options={{ showSpinner: false }}
           shallowRouting
         />
-        <Toaster />
+        <Toaster position='top-right' />
       </QueryClientProvider>
     </Fragment>
   );
