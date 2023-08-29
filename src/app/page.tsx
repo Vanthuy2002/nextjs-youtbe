@@ -6,6 +6,7 @@ import { Fragment } from 'react';
 const menuList = [
   { id: 1, title: 'About', to: '/about' },
   { id: 2, title: 'User', to: '/user' },
+  { id: 3, title: 'Feedback', to: '/feedback' },
 ];
 
 export default function Home() {

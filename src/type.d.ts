@@ -38,3 +38,9 @@ type ButtonProps = {
   optionclass?: string;
   size?: 'md' | 'lg';
 } & JSX.IntrinsicElements['button'];
+
+interface IFeedback {
+  name?: string;
+  email?: string;
+  message?: string;
+}

@@ -15,11 +15,11 @@ const ProviderApp = ({ children }: { children: React.ReactNode }) => {
         {children}
         <ProgressBar
           height='4px'
-          color='#1538ac'
+          color='#3664fc'
           options={{ showSpinner: false }}
           shallowRouting
         />
-        <Toaster/>
+        <Toaster />
       </QueryClientProvider>
     </Fragment>
   );
