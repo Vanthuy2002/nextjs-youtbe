@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 
 const UserDetail = ({ params }: UserIdProps) => {
   const { slug } = params;
-  const title = slug ? `Details of ${slug}` : 'Not found Id';
+  const title = slug ? `Comment by user ${slug}` : 'Not found Id';
 
   return (
     <Fragment>

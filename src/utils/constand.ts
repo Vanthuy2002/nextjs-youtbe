@@ -11,4 +11,6 @@ const toUpperCase = (word: string): string => {
   return newWord;
 };
 
-export { baseURL, toUpperCase, api };
+const createUUID = (): string => crypto.randomUUID();
+
+export { baseURL, toUpperCase, api, createUUID };
